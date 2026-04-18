@@ -1,0 +1,13 @@
+# Build artifacts
+*.o
+*/solution
+!*/solution.cpp
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~

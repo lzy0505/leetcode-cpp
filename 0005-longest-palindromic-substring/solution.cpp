@@ -108,6 +108,7 @@ public:
 
   string longestPalindrome(string s) { 
      // TODO
+// https://cp-algorithms.com/string/manacher.html
   }
 };
 
@@ -120,5 +121,6 @@ public:
 
   string longestPalindrome(string s) { 
      // TODO
+// https://cp-algorithms.com/string/string-hashing.html
   }
 };

@@ -98,12 +98,52 @@
 //
 // 	  - s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'.
 
-#include <bits/stdc++.h>
+#include <climits>
+#include <stdio.h>
 using namespace std;
 
 class Solution {
 public:
     int myAtoi(string s) {
-        
+        int res = 0;
+        bool neg = false;
+        bool start = false;
+        for (char c : s){
+
+            // negative if see a -
+            if (!start && c == '-')
+            {
+                neg = true;
+                //number is supposed to start after we see the sign
+                start = true;
+                continue;
+            }
+            if (!start && c == '+')
+            {
+                //number is supposed to start after we see the sign
+                start = true;
+                continue;
+            }
+            if (!start && c == ' ') continue;
+
+            if (c < '0' || c > '9') return res;
+            else
+            {
+                start = true;
+                int d = (neg? -1 : 1) * (c - '0');
+
+                if (!neg && ((res > INT_MAX /10) || (res == INT_MAX /10 && d > 7)))
+                {
+                    return INT_MAX;
+                }
+                if (neg && ((res < INT_MIN /10) || (res == INT_MIN /10 && d < -8)))
+                {
+                    return INT_MIN;
+                }
+
+                res = res * 10 + d;
+            }
+        }
+        return res;
     }
 };

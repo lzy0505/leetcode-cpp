@@ -47,12 +47,37 @@
 //
 // 	  - 1 <= numRows <= 1000
 
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <string>
 using namespace std;
 
 class Solution {
 public:
     string convert(string s, int numRows) {
-        
+        if (numRows <= 1) return s;
+
+        string res ="";
+        int T = 2 * numRows - 2;
+        int C = s.size() / T + 1;
+
+        for (int i = 0; i< numRows; i ++){
+            if (i == 0 || i == numRows - 1){
+                for (int c = 0; c < C; c ++)
+                {
+                    try { res += s.at(c * T + i); }
+                    catch (...) { continue; }
+                }
+            } else {
+                for (int c = 0; c < C; c ++)
+                {
+                    try { res += s.at(c * T + i); }
+                    catch (...) { continue; }
+                    try { res += s.at((c+1) * T - i); }
+                    catch (...) { continue; }
+                }
+            }
+        }
+
+        return res;
     }
 };
